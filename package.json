@@ -1,0 +1,31 @@
+{
+  "name": "pm-site",
+  "version": "0.0.1",
+  "description": "PM Website",
+  "main": "src/index.tsx",
+  "repository": "https://github.com/jorge3186/pm-site.git",
+  "author": "Jordan Alphonso <jordanalphonso1@yahoo.com>",
+  "license": "AGPL-3.0-or-later",
+  "private": false,
+  "scripts": {
+    "start": "echo 'Hello'",
+    "pretest": "echo 'Lint'",
+    "test": "echo 'Test'",
+    "build": "echo 'Build'"
+  },
+  "dependencies": {
+    "foundation-sites": "^6.4.4-rc1",
+    "react": "^16.4.0",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^16.3.17",
+    "@types/react-redux": "^6.0.2",
+    "@types/webpack": "^4.4.0",
+    "ts-node": "^6.1.0",
+    "typescript": "^2.9.1",
+    "webpack": "^4.12.0",
+    "webpack-dev-server": "^3.1.4"
+  }
+}

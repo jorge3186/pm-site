@@ -1,0 +1,18 @@
+# VS Code
+.vscode/
+
+# builds
+dist/
+
+# node
+node_modules/
+
+# npm and yarn
+npm-debug.log
+npm-error.log
+yarn-debug.log
+yarn-error.log
+
+# testing 
+coverage/
+__snapshots__/
