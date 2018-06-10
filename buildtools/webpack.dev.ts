@@ -38,7 +38,7 @@ let config: webpack.Configuration = {
     },
 
     plugins: [
-        new CleanWebpackPlugin('dist', { root: __dirname + '../' }),
+        new CleanWebpackPlugin('dist', { root: __dirname + '/../' }),
         new HTMLWebpackPlugin({
             template: 'src/app/client/template.html'
         })
