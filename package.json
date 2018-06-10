@@ -2,16 +2,16 @@
   "name": "pm-site",
   "version": "0.0.1",
   "description": "PM Website",
-  "main": "src/index.tsx",
+  "main": "src/client/index.tsx",
   "repository": "https://github.com/jorge3186/pm-site.git",
   "author": "Jordan Alphonso <jordanalphonso1@yahoo.com>",
   "license": "AGPL-3.0-or-later",
   "private": false,
   "scripts": {
     "start": "webpack-dev-server --config buildtools/webpack.dev.ts",
-    "pretest": "tslint -c buildtools/tslint.yml 'src/**/*.{ts,tsx}'",
+    "pretest": "tslint -c buildtools/tslint.yml 'src/app/client/**/*.{ts,tsx}'",
     "test": "jest --coverage",
-    "build": "echo 'Build'"
+    "build": "webpack --config buildtools/webpack.prod.ts"
   },
   "dependencies": {
     "foundation-sites": "^6.4.4-rc1",
@@ -21,17 +21,54 @@
     "redux": "^4.0.0"
   },
   "devDependencies": {
+    "@types/clean-webpack-plugin": "^0.1.2",
+    "@types/enzyme": "^3.1.10",
+    "@types/enzyme-adapter-react-16": "^1.0.2",
+    "@types/html-webpack-plugin": "^2.30.3",
     "@types/jest": "^23.0.0",
     "@types/react": "^16.3.17",
     "@types/react-dom": "^16.0.6",
     "@types/react-redux": "^6.0.2",
     "@types/webpack": "^4.4.0",
     "awesome-typescript-loader": "^5.0.0",
+    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^0.28.11",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "html-webpack-plugin": "^3.2.0",
     "jest": "^23.1.0",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.0.3",
+    "style-loader": "^0.21.0",
+    "ts-jest": "^22.4.6",
     "ts-node": "^6.1.0",
     "tslint": "^5.10.0",
     "typescript": "^2.9.1",
     "webpack": "^4.12.0",
+    "webpack-cli": "^3.0.3",
     "webpack-dev-server": "^3.1.4"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    },
+    "setupTestFrameworkScriptFile": "<rootDir>/src/app/client/setupTests.ts",
+    "globals": {
+      "ts-jest": {
+        "tsConfigFile": "tsconfig.json"
+      }
+    },
+    "testMatch": [
+      "**/__tests__/*.+(ts|tsx|js)"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/src/app/client/setupTests.ts"
+    ]
   }
 }
