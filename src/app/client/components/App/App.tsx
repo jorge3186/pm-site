@@ -6,7 +6,7 @@
  *
  * ---------------------------------------------------------
  * @author Jordan Alphonso
- * created: 12/10/2018 01:06:41
+ * created: 06/11/2018 11:20:18
  * file: src/app/client/components/App/App.tsx
  * ---------------------------------------------------------
  */
@@ -25,6 +25,10 @@ export default class AppComponent extends React.Component<AppProps, AppState> {
         return (
             <div>
                 <h3>Hello, World</h3>
+                <button className={'button primary'}>Foundation Button</button>
+                <div className={'callout alert'}>
+                    <p>Callout example</p>
+                </div>
             </div>
         );
     }

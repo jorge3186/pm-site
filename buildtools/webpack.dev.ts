@@ -26,7 +26,7 @@ let config: webpack.Configuration = {
                 loaders: ['awesome-typescript-loader']
             },
             {
-                test: /\.(s*)css$/,
+                test: /\.scss$/,
                 loaders: ['style-loader', 'css-loader', 'sass-loader']
             }
         ]
