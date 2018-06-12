@@ -1,4 +1,19 @@
+/**
+ * Copyright 2018 jordanalphonso.net
+ * 
+ * Unauthorized copying of this file, via any medium
+ * is strictly prohibited.
+ *
+ * ---------------------------------------------------------
+ * @author Jordan Alphonso
+ * created: 06/11/2018 12:35:16
+ * file: src/app/client/assets/_settings.scss
+ * ---------------------------------------------------------
+ */
 @import '~foundation-sites/scss/util/util';
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Didact+Gothic');
 
 // 1. Global
 // ---------
@@ -7,20 +22,20 @@ $global-font-size: 100%;
 $global-width: rem-calc(1200);
 $global-lineheight: 1.5;
 $foundation-palette: (
-  primary: #db9c3c,
-  secondary: #767676,
-  success: #329265,
-  warning: #e6e94f,
+  primary: #417D7F,
+  secondary: #cacaca,
+  success: #68C7CC,
+  warning: #CF8340,
   alert: #9b3929,
 );
 $light-gray: #e6e6e6;
-$medium-gray: #cacaca;
-$dark-gray: #8a8a8a;
+$medium-gray: #87A0A6;
+$dark-gray: #485659;
 $black: #0a0a0a;
 $white: #fefefe;
 $body-background: $white;
 $body-font-color: $black;
-$body-font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+$body-font-family: 'Didact Gothic', sans-serif;
 $body-antialiased: true;
 $global-margin: 1rem;
 $global-padding: 1rem;

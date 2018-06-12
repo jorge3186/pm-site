@@ -10,6 +10,12 @@
  * file: src/app/client/assets/vendors.ts
  * ---------------------------------------------------------
  */
+
+ // jquery
 import 'jquery/dist/jquery.min';
+
+// what-input
 import 'what-input/dist/what-input.min';
-import 'foundation-sites/dist/js/foundation.min.js';
+
+// foundation-sites
+import 'foundation-sites/dist/js/foundation.min';

@@ -47,6 +47,10 @@ let config: webpack.Configuration = {
 
     plugins: [
         new CleanWebpackPlugin('dist', { root: __dirname + '/../' }),
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery'
+        }),
         new HTMLWebpackPlugin({
             template: 'src/app/client/template.html'
         })

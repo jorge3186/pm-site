@@ -16,7 +16,7 @@ let config: webpack.Configuration = {
     devtool: 'inline-source-map',
 
     resolve: {
-        extensions: ['.ts', '.tsx', '.js', '.json'] 
+        extensions: ['.ts', '.tsx', '.js', '.json']
     },
 
     module: {
@@ -39,6 +39,10 @@ let config: webpack.Configuration = {
 
     plugins: [
         new CleanWebpackPlugin('dist', { root: __dirname + '/../' }),
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery'
+        }),
         new HTMLWebpackPlugin({
             template: 'src/app/client/template.html'
         })

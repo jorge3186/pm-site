@@ -11,11 +11,29 @@
  * ---------------------------------------------------------
  */
 import * as React from 'react';
+import { Provider } from 'react-redux';
 import * as ReactDom  from 'react-dom';
+import * as $ from 'jquery';
 
-import App from './components/App/App'
+import App from './components/App/App';
+import Store from './core/store/store';
 
 // Styles Root
 import './assets/style.scss';
 
-ReactDom.render(<App />, document.getElementById('root'));
+// Vendor Scripts
+import './assets/vendors';
+
+/**
+ * Render the App Store using ReactDom
+ */
+ReactDom.render(
+    <Provider store={Store}>
+        <App />
+    </Provider>, 
+    
+    document.getElementById('root')
+);
+
+// kickoff foundation
+($(document) as any).foundation();
