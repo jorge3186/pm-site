@@ -59,7 +59,7 @@ export interface VoteAction {
  * @param lang 
  * @param voteType 
  */
-export default function vote(lang: string, voteType: number): VoteAction {
+export function vote(lang: string, voteType: number): VoteAction {
     return {
         type: determineType(voteType),
         language: lang ? lang.toUpperCase() : ''

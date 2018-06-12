@@ -14,8 +14,6 @@ rules:
 
   no-reference: true
 
-  no-var-keyword: true
-
   triple-equals: true
 
   eofline: true

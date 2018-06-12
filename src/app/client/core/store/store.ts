@@ -45,4 +45,3 @@ export const initialState: StoreState = {
  */
 const AppStore = createStore(RootReducer, applyMiddleware(thunkMiddleware));
 export default AppStore;
-

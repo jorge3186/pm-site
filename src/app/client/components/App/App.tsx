@@ -13,9 +13,11 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
+
 import { StoreState } from '../../core/store/store';
 import { VoteAction } from '../../core/votes/votes.actions';
-import vote from '../../core/votes/votes.actions';
+import { vote } from '../../core/votes/votes.actions';
+import Language from '../Language/Language';
 
 /**
  * @type {interface}
@@ -34,36 +36,26 @@ export interface AppProps {
  * The React Component that will be connected with 
  * the AppStore
  */
-class AppComponent extends React.Component<AppProps> {
+export class AppComponent extends React.Component<AppProps> {
 
     constructor(props: AppProps) {
         super(props);
     }
 
-    /**
-     * Upon Clicking an Up or Down Vote
-     * button, props.changeVote will be triggered
-     * and send the action to the AppStore.
-     * 
-     * @param lang 
-     * @param voteType 
-     */
-    public handleVote(lang: string, voteType: number) {
-        this.props.changeVote(lang, voteType);
-    }
-
     render() {
-        let languages: React.ReactElement<any>[] = [];
-        Object.keys(this.props.votes).forEach(lng => {
-            languages.push(
-                <li key={lng}>
-                    <h3>{lng}</h3>
-                    <p>Votes: {this.props.votes[lng]}</p>
-                    <button className="button small primary margin-right-1" onClick={() => this.handleVote(lng, 1)}>Up Vote</button>
-                    <button className="button small alert" onClick={() => this.handleVote(lng, -1)}>Down Vote</button>
-                </li>
-            );
-        });
+        let languages: React.ReactElement<AppProps>[] = [];
+        if (this.props.votes) {
+            Object.keys(this.props.votes).forEach(lng => {
+                languages.push(
+                    <li key={lng}>
+                        <Language 
+                            name={lng} 
+                            votes={this.props.votes[lng]}
+                            changeVote={this.props.changeVote} />
+                    </li>
+                );
+            });
+        }
 
         return (
             <div>
