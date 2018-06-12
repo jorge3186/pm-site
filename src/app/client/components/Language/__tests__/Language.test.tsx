@@ -21,8 +21,8 @@ describe('<Language />', () => {
     var component: ShallowWrapper;
 
     beforeEach(() => {
-        const mock = jest.fn();
-        const component = shallow(
+        mock = jest.fn();
+        component = shallow(
             <Language 
                 name={'Java'} 
                 votes={3} 

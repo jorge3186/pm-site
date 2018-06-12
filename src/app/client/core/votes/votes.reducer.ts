@@ -10,8 +10,21 @@
  * file: src/app/client/core/votes/votes.reducer.ts
  * ---------------------------------------------------------
  */
-import { StoreState, initialState } from '../store/store';
+import { StoreState } from '../store/store';
 import { VoteAction, VoteActions } from './votes.actions';
+
+/**
+ * @type {const}
+ * 
+ * Our Initial State of the Store.
+ */
+export const initialState: StoreState = {
+    votes: {
+        JAVA: 3,
+        TS: 5,
+        CS: 2
+    }
+};
 
 /**
  * @type {Function}
@@ -25,12 +38,15 @@ import { VoteAction, VoteActions } from './votes.actions';
  * @returns updated state
  */
 export default function VotesReducer(state: StoreState = initialState, action: VoteAction): StoreState {
-    let votes = Object.assign({}, state ? state.votes : {});
+    let votes: any = Object.assign({}, state.votes);
+    if (!votes[action.language]) {
+        votes[action.language] = 0;
+    }
 
     if (action.type === VoteActions.UP_VOTE) {
         votes[action.language] += 1;
     } else if (action.type === VoteActions.DOWN_VOTE) {
-        votes[action.language] -= 1;
+        votes[action.language] = 1;
     }
 
     if (votes[action.language] < 0) {

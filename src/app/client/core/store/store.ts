@@ -24,19 +24,6 @@ import RootReducer from './root.reducer';
 }
 
 /**
- * @type {const}
- * 
- * Our Initial State of the Store.
- */
-export const initialState: StoreState = {
-    votes: {
-        JAVA: 3,
-        TS: 5,
-        CS: 2
-    }
-};
-
-/**
  * @type {Store}
  * @name AppStore
  * 
