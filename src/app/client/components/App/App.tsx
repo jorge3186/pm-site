@@ -14,8 +14,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
-import { StoreState } from '../../core/store/store';
-import { VoteAction } from '../../core/votes/votes.actions';
+import { StoreState, BaseAction } from '../../core/store/store';
 import { vote } from '../../core/votes/votes.actions';
 import Language from '../Language/Language';
 
@@ -30,43 +29,35 @@ export interface AppProps {
 }
 
 /**
- * @type {React.Component}
+ * @type {React.SFC}
  * @name AppComponent
  * 
  * The React Component that will be connected with 
  * the AppStore
  */
-export class AppComponent extends React.Component<AppProps> {
-
-    constructor(props: AppProps) {
-        super(props);
+export const AppComponent: React.SFC<AppProps> = ({ changeVote, votes }) => {
+    let languages: React.ReactElement<AppProps>[] = [];
+    if (votes) {
+        Object.keys(votes).forEach(lng => {
+            languages.push(
+                <li key={lng}>
+                    <Language 
+                        name={lng} 
+                        votes={votes[lng]}
+                        changeVote={changeVote} />
+                </li>
+            );
+        });
     }
 
-    render() {
-        let languages: React.ReactElement<AppProps>[] = [];
-        if (this.props.votes) {
-            Object.keys(this.props.votes).forEach(lng => {
-                languages.push(
-                    <li key={lng}>
-                        <Language 
-                            name={lng} 
-                            votes={this.props.votes[lng]}
-                            changeVote={this.props.changeVote} />
-                    </li>
-                );
-            });
-        }
-
-        return (
-            <div>
-                <ul>
-                    {languages}
-                </ul>
-            </div>
-        );
-    }
-
-}
+    return (
+        <div>
+            <ul>
+                {languages}
+            </ul>
+        </div>
+    );
+};
 
 /**
  * @type {container}
@@ -83,7 +74,7 @@ const App = connect<StoreState, AppProps>(
     },
 
     // Map Dispatch to Props
-    (dispatch: Dispatch<VoteAction>) => {
+    (dispatch: Dispatch<BaseAction<string>>) => {
         return {
             changeVote: (lang: string, voteType: number) => dispatch(vote(lang, voteType))
         }

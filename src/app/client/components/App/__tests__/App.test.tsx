@@ -12,22 +12,20 @@
  */
 import * as React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
-import { AppComponent } from '../App';
+import { AppComponent, AppProps } from '../App';
 
 describe('<App />', () => {
 
     it('should contain <Language /> nodes as children', () => {
-        const component: ShallowWrapper = shallow(
-            <AppComponent 
-                changeVote={jest.fn()} 
-                votes={
-                    {
-                        JAVA: 3,
-                        TS: 2,
-                        CS: 4
-                    }
-                } />
-        );
+        const props: AppProps = {
+            changeVote: jest.fn(),
+            votes: {
+                JAVA: 3,
+                TS: 2,
+                CS: 4
+            }
+        };
+        const component: ShallowWrapper = shallow(<AppComponent {...props} />);
         expect(component.find('Language').length).toEqual(3);
     });
 
@@ -37,19 +35,17 @@ describe('<App />', () => {
     });
 
     it('should call the props.changeVote function', () => {
-        let mock: () => void = jest.fn();
-        const component: ShallowWrapper = shallow(
-            <AppComponent 
-                changeVote={mock} 
-                votes={{
-                    JAVA: 3,
-                    TS: 2,
-                    CS: 4
-                }} />
-        );
-
+        const props: AppProps = {
+            changeVote: jest.fn(),
+            votes: {
+                JAVA: 3,
+                TS: 2,
+                CS: 4
+            }
+        };
+        const component: ShallowWrapper = shallow(<AppComponent {...props} />);
         component.find('Language').at(0).dive().find('button').at(0).simulate('click');
-        expect(mock).toHaveBeenCalled();
+        expect(props.changeVote).toHaveBeenCalled();
     });
 
 });

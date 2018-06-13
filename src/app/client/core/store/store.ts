@@ -24,11 +24,22 @@ import RootReducer from './root.reducer';
 }
 
 /**
+ * @type {interface}
+ * 
+ * Base Action
+ */
+export interface BaseAction<T> {
+    type: string;
+    payload: T;
+}
+
+/**
  * @type {Store}
  * @name AppStore
  * 
  * The App Store that will be sent 
  * to the Provider Component
  */
-const AppStore = createStore(RootReducer, applyMiddleware(thunkMiddleware));
+const AppStore = createStore<StoreState, BaseAction<any>, any, any>(
+    RootReducer, applyMiddleware(thunkMiddleware));
 export default AppStore;

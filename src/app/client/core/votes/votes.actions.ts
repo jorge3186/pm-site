@@ -10,6 +10,7 @@
  * file: src/app/client/core/votes/votes.actions.ts
  * ---------------------------------------------------------
  */
+import { BaseAction } from '../store/store';
 
  /**
   * @type {enum}
@@ -42,26 +43,15 @@ function determineType(voteType: number): VoteActions {
 }
 
 /**
- * @type {interface}
- * 
- * Action interface that 
- * will be given to the reducer
- */
-export interface VoteAction {
-    type: string;
-    language: string;
-}
-
-/**
  * @type {Function}
  * @name VoteAction
  * 
  * @param lang 
  * @param voteType 
  */
-export function vote(lang: string, voteType: number): VoteAction {
+export function vote(lang: string, voteType: number): BaseAction<string> {
     return {
         type: determineType(voteType),
-        language: lang ? lang.toUpperCase() : ''
+        payload: lang ? lang.toUpperCase() : ''
     };
 };

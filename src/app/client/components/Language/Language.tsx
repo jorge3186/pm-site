@@ -12,25 +12,36 @@
  */
 import * as React from 'react';
 
-interface LangProps {
+/**
+ * Language Component Props
+ */
+export interface LangProps {
     name: string;
     votes: number;
     changeVote: (lng: string, voteType: number) => void;
 }
 
-export default class Language extends React.Component<LangProps> {
+/**
+ * @type {React.SFC}
+ * @name Language
+ * 
+ * Language SFC. 
+ * 
+ * @param name
+ * @param votes
+ * @param changeVote 
+ */
+const Language: React.SFC<LangProps> = ({ name, votes, changeVote }) => {
+    return (
+        <div>
+            <h3>{name}</h3>
+            <p>Votes: {votes}</p>
+            <button className="button small primary margin-right-1" 
+                    onClick={() => changeVote(name, 1)}>Up Vote</button>
+                <button className="button small alert" 
+                    onClick={() => changeVote(name, -1)}>Down Vote</button>
+        </div>
+    );
+};
 
-    render() {
-        return (
-            <div>
-                <h3>{this.props.name}</h3>
-                <p>Votes: {this.props.votes}</p>
-                <button className="button small primary margin-right-1" 
-                        onClick={() => this.props.changeVote(this.props.name, 1)}>Up Vote</button>
-                    <button className="button small alert" 
-                        onClick={() => this.props.changeVote(this.props.name, -1)}>Down Vote</button>
-            </div>
-            
-        );
-    }
-}
+export default Language;

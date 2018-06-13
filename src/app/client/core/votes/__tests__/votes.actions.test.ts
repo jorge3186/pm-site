@@ -10,28 +10,35 @@
  * file: src/app/client/core/votes/__tests__/votes.actions.test.ts
  * ---------------------------------------------------------
  */
-import { VoteAction, VoteActions, vote } from '../votes.actions';
+import { VoteActions, vote } from '../votes.actions';
+import { BaseAction } from '../../store/store';
 
 describe('Vote Action', () => {
 
     it('returns a down vote when negative number is passed', () => {
-        let action: VoteAction = vote('Java', -1);
+        let action: BaseAction<string> = vote('Java', -1);
         expect(action.type).toEqual(VoteActions.DOWN_VOTE);
     });
 
     it('returns an up vote when positive number is passed', () => {
-        let action: VoteAction = vote('Java', 1);
+        let action: BaseAction<string> = vote('Java', 1);
         expect(action.type).toEqual(VoteActions.UP_VOTE);
     });
 
     it('return indifferent when number is null', () => {
-        let action: VoteAction = vote('Java', null);
+        let action: BaseAction<string> = vote('Java', null);
         expect(action.type).toEqual(VoteActions.INDIFFERENT);
     });
 
     it('returns the language in uppercase', () => {
-        let action: VoteAction = vote('java', 1);
-        expect(action.language).toEqual('JAVA');
+        let action: BaseAction<string> = vote('java', 1);
+        expect(action.payload).toEqual('JAVA');
+    });
+
+    it('returns an empty string if no language is present', () => {
+        let action: BaseAction<string> = vote(null, 1);
+        expect(action.payload).toEqual('');
+        expect(action.type).toEqual(VoteActions.UP_VOTE);
     });
 
 });

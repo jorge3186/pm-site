@@ -13,21 +13,21 @@
 import * as React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
 
-import Language from '../Language';
+import Language, { LangProps } from '../Language';
+import { vote } from '../../../core/votes/votes.actions';
 
 describe('<Language />', () => {
 
-    var mock: jest.Mock;
+    var props: LangProps;
     var component: ShallowWrapper;
 
     beforeEach(() => {
-        mock = jest.fn();
-        component = shallow(
-            <Language 
-                name={'Java'} 
-                votes={3} 
-                changeVote={mock} />
-        );
+        props = {
+            changeVote: jest.fn(),
+            name: 'Java',
+            votes: 3
+        };
+        component = shallow(<Language {...props} />);
     });
 
     it('should display a header', () => {
@@ -46,10 +46,10 @@ describe('<Language />', () => {
 
     it('should trigger props.changeVote', () => {
         component.find('button').at(0).simulate('click');
-        expect(mock).toHaveBeenCalledWith('Java', 1);
+        expect(props.changeVote).toHaveBeenCalledWith('Java', 1);
 
         component.find('button').at(1).simulate('click');
-        expect(mock).toHaveBeenCalledWith('Java', -1);
+        expect(props.changeVote).toHaveBeenCalledWith('Java', -1);
     });
 
 });
